@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>Обяснение на Светата Литургия</title>
+  <meta name="description" content="Мобилно ориентирана, достъпна страница с текст на Светата Литургия и обяснения по раздели." />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#liturgy">Прескочи към текста</a>
+
+  <header class="top" role="banner">
+    <div class="top__inner">
+      <h1 class="top__title">Света Литургия — текст и обяснение</h1>
+
+      <!--
+        Accessible, no-JS collapsible panel.
+        The explanation content is populated/updated by app.js.
+      -->
+      <details class="explain" open>
+        <summary class="explain__summary">
+          <span class="explain__label">Обяснение</span>
+          <span class="explain__hint" aria-hidden="true">(натисни за свиване/разгъване)</span>
+        </summary>
+
+        <div class="explain__body" aria-live="polite" aria-atomic="true">
+          <p id="explanation-title" class="explain__title">Избери раздел от текста</p>
+          <div id="explanation-content" class="explain__content">
+            <p class="muted">Обяснението ще се сменя автоматично, докато скролираш текста.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <main id="liturgy" class="main" role="main">
+    <section class="intro" aria-labelledby="intro-title">
+      <h2 id="intro-title">Как да използваш страницата</h2>
+      <p>
+        Текстът е разделен на части. Когато даден раздел стане видим на екрана, полето „Обяснение“ се обновява.
+      </p>
+      <p class="no-js">
+        JavaScript изглежда е изключен или е блокиран. Подредбата работи, но текстът се зарежда от
+        <a href="data/liturgy.json">data/liturgy.json</a> и няма как да се визуализира без JavaScript.
+      </p>
+    </section>
+
+    <section class="content" aria-labelledby="content-title">
+      <h2 id="content-title">Текст на Литургията</h2>
+
+      <div id="status" class="status" role="status" aria-live="polite">
+        Зареждане…
+      </div>
+
+      <!-- Render target: app.js injects sections here from data/liturgy.json -->
+      <div id="sections" class="sections" aria-busy="true"></div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <p class="muted">
+      Тази страница е статична и може да се качи като папка в сайт. Редактиране на съдържанието става само чрез
+      <a href="data/liturgy.json">data/liturgy.json</a>.
+    </p>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

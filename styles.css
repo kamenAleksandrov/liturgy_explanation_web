@@ -1,0 +1,242 @@
+/*
+  Mobile-first, high-contrast, elderly-friendly typography.
+  No external fonts, no animations, no inline styles.
+*/
+
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #3a3a3a;
+  --panel-bg: #f7f5ef;
+  --border: #d8d5cc;
+  --focus: #0b57d0;
+  --link: #0b57d0;
+
+  --radius: 12px;
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.25rem;
+  --space-5: 1.5rem;
+
+  --max: 72rem;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  font-size: 100%;
+  scroll-behavior: auto; /* avoid motion */
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  font-size: 18px; /* minimum body size */
+}
+
+/* When JS is running, hide the no-JS note without inline styles. */
+.js .no-js { display: none; }
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.18em;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateY(-120%);
+  padding: var(--space-2) var(--space-3);
+  background: #fff;
+  border: 2px solid var(--focus);
+  border-radius: var(--radius);
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--panel-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.top__inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--space-3);
+}
+
+.top__title {
+  margin: 0 0 var(--space-2) 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.explain {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.explain__summary {
+  cursor: pointer;
+  padding: var(--space-3);
+  list-style: none;
+}
+
+.explain__summary::-webkit-details-marker { display: none; }
+
+.explain__label {
+  font-weight: 700;
+}
+
+.explain__hint {
+  margin-left: var(--space-2);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.explain__body {
+  padding: 0 var(--space-3) var(--space-3) var(--space-3);
+  border-top: 1px solid var(--border);
+}
+
+.explain__title {
+  margin: var(--space-2) 0 var(--space-2) 0;
+  font-weight: 700;
+}
+
+.explain__content p {
+  margin: 0 0 var(--space-2) 0;
+}
+
+.main {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-3);
+}
+
+.intro h2,
+.content h2 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.no-js {
+  margin-top: var(--space-2);
+  padding: var(--space-3);
+  border-left: 6px solid var(--border);
+  background: var(--panel-bg);
+}
+
+.status {
+  margin: var(--space-3) 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.status[hidden] { display: none; }
+
+.sections {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.lit-section {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  padding: var(--space-3);
+}
+
+/* Clear but calm indication of the section currently driving the explanation panel. */
+.lit-section.is-active {
+  border-color: var(--focus);
+}
+
+.lit-section:focus-within {
+  outline: 2px solid rgba(11, 87, 208, 0.2);
+  outline-offset: 2px;
+}
+
+.lit-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.lit-section__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.lit-section__meta {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+.role {
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-2);
+}
+
+.role__label {
+  margin: 0 0 var(--space-2) 0;
+  font-weight: 700;
+}
+
+.role__text {
+  margin: 0;
+  white-space: pre-wrap; /* keep new lines from JSON */
+}
+
+.footer {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-3);
+  border-top: 1px solid var(--border);
+}
+
+/* Tablet/Desktop: allow side-by-side People / Priest columns */
+@media (min-width: 900px) {
+  .top__title {
+    font-size: 1.25rem;
+  }
+
+  .columns {
+    grid-template-columns: 1fr 1fr;
+  }
+}
